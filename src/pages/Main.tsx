@@ -25,12 +25,12 @@ function Main() {
           <Sidebar />
         </div>
         {/*Game List*/}
-        <div className="relative grid-cols-4 grid w-full">
+        <div className="relative lg:grid-cols-4 sm:grid-cols-3 grid w-full">
           {GameNames.map((GameTitle: string, index: number) => (
             <Game
               Title={GameTitle}
               Genre="Battle Royale"
-              ImageURL="https://cdn2.unrealengine.com/14br-consoles-1920x1080-wlogo-1920x1080-432974386.jpg"
+              ImageURL="https://www.callofduty.com/content/dam/atvi/callofduty/cod-touchui/hub/meta-imgs/vg-meta-image.jpg"
             />
           ))}
         </div>
