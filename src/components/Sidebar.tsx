@@ -19,7 +19,7 @@ const filters = [
 const Sidebar: React.FC = () => {
   return (
     <>
-      <div className="flex flex-col w-64 h-screen px-4 py-8 bg-white border-r dark:bg-gray-800 dark:border-gray-600">
+      <div className="flex flex-col w-64 h-screen px-4 py-8 bg-white border-r dark:bg-gray-700 dark:border-gray-600">
         <h2 className="text-3xl font-semibold text-gray-800 dark:text-white">
           Game Library
         </h2>
@@ -48,13 +48,36 @@ const Sidebar: React.FC = () => {
         </div>
 
         <div className="flex items-center px-4 pt-4">
+          <button>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-6 w-6 border-gray-300 rounded bg-white"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
+              />
+            </svg>
+          </button>
+          <label className="ml-3 min-w-0 flex-1 text-gray-500 dark:text-gray-200">
+            Add Game
+          </label>
+        </div>
+        <div className="flex items-center px-4 pt-4">
           <input
             name="Favorite"
             defaultValue="Favorites"
             type="checkbox"
-            className="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500"
+            className="h-6 w-6 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500"
           />
-          <label className="ml-3 min-w-0 flex-1 text-gray-500">Favorite</label>
+          <label className="ml-3 min-w-0 flex-1 text-gray-500 dark:text-gray-200">
+            Favorite
+          </label>
         </div>
         {/* Filters */}
         <form className="mt-4 border-t border-gray-200">
@@ -67,7 +90,7 @@ const Sidebar: React.FC = () => {
               {({ open }) => (
                 <>
                   <h3 className="-mx-2 -my-3 flow-root">
-                    <Disclosure.Button className="px-2 py-3 bg-white w-full flex items-center justify-between text-gray-400 hover:text-gray-500">
+                    <Disclosure.Button className="px-2 py-3 bg-white dark:bg-gray-300 rounded-xl w-full flex items-center justify-between text-gray-400 hover:text-gray-500">
                       <span className="font-medium text-gray-900">
                         {section.name}
                       </span>

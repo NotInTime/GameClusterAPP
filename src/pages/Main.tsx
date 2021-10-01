@@ -19,7 +19,7 @@ const GameNames = [
 
 function Main() {
   return (
-    <div className="h-screen w-full">
+    <div className="h-screen w-full bg-gray-200 dark:bg-gray-900">
       <div className="relative flex flex-row">
         <div className="">
           <Sidebar />
