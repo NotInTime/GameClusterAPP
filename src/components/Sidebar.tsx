@@ -22,8 +22,6 @@ const filters = [
 const Sidebar: React.FC = () => {
   const [openModal, setOpenModal] = useState(false);
 
-  const closeModalHandler = () => setOpenModal(false);
-
   return (
     <>
       <div className="flex flex-col w-64 h-screen px-4 py-8 bg-white border-r dark:bg-gray-700 dark:border-gray-600">
@@ -54,7 +52,7 @@ const Sidebar: React.FC = () => {
 
         <div className="flex items-center px-4 pt-4">
           <button className="flex flex-row" onClick={() => setOpenModal(true)}>
-            <AddGameModal showModal={openModal} closeModalHandler={closeModalHandler} />
+            <AddGameModal showModal={openModal} closeModalHandler={() => setOpenModal(false)} />
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-6 w-6 border-gray-300 rounded bg-white"
