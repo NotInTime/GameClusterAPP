@@ -16,6 +16,7 @@ const Game: React.FC<IGame> = (props) => {
               <img
                 className="h-40 rounded-2xl w-full object-cover"
                 src={props.ImageURL}
+                alt="gameIMG"
               />
               <p className="absolute right-2 top-2 bg-white rounded-full p-2 cursor-pointer group">
                 <svg
