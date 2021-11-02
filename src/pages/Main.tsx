@@ -1,4 +1,5 @@
 import "../App.css";
+import AddGameModal from "../components/AddGameModal";
 import Game from "../components/Game";
 import Sidebar from "../components/Sidebar";
 
