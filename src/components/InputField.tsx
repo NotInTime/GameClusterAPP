@@ -1,24 +1,34 @@
-import { FunctionComponent } from 'react';
+import { FunctionComponent } from "react";
 
 export interface IInputFieldProps {
-    InputTitle: String;
+  InputTitle: string;
+  InputFieldID: string;
 }
 
 const InputField: FunctionComponent<IInputFieldProps> = (props) => {
-    return (
-        <div>
-            <label htmlFor="Title" className="block text-sm font-medium text-gray-700">
-                {props.InputTitle}
-            </label>
-            <div className="mt-1 relative rounded-md shadow-sm">
-                <input
-                    type="text"
-                    name="Title"
-                    className="focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
-                />
-            </div>
-        </div>
-    );
+  const handleOnChange = (e: any, id: string) => {
+    console.log(e);
+    console.log(id);
+  };
+  return (
+    <div>
+      <label
+        htmlFor="Title"
+        className="block text-sm font-medium text-gray-700"
+      >
+        {props.InputTitle}
+      </label>
+      <div className="mt-1 relative rounded-md shadow-sm">
+        <input
+          id={props.InputFieldID}
+          type="text"
+          name="Title"
+          className="focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
+          onChange={(e) => handleOnChange(e.target.value, props.InputFieldID)}
+        />
+      </div>
+    </div>
+  );
 };
 
-export default InputField
+export default InputField;

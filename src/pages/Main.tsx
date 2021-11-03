@@ -1,32 +1,37 @@
 import "../App.css";
-import AddGameModal from "../components/AddGameModal";
 import Game from "../components/Game";
+import MobileSidebar from "../components/MobileSidebar";
 import Sidebar from "../components/Sidebar";
 
 const GameNames = [
   "Fortnite",
-  "Counter Strike: Global Offensive",
-  "League of Legends",
-  "Darksouls 1",
-  "Darksouls 3",
-  "Factorio",
-  "Phasmophobia",
-  "Battlefield",
-  "Call of Duty Modern Warfare",
-  "Fall Guys",
-  "UNO",
-  "Call of Duty Modern Warfare",
+  "iwdjaw",
+  "iwdjaw",
+  "iwdjaw",
+  "iwdjaw",
+  "iwdjaw",
+  "iwdjaw",
+  "iwdjaw",
+  "iwdjaw",
+  "iwdjaw",
+  "iwdjaw",
+  "iwdjaw",
+  "iwdjaw",
+  "iwdjaw",
 ];
 
 function Main() {
   return (
-    <div className="h-screen w-full bg-gray-200 dark:bg-gray-900">
+    <div className="h-full w-full bg-gray-200 dark:bg-gray-900">
       <div className="relative flex flex-row">
-        <div className="">
+        <div className="visible md:invisible ">
+          <MobileSidebar />
+        </div>
+        <div className="invisible md:visible">
           <Sidebar />
         </div>
         {/*Game List*/}
-        <div className="relative lg:grid-cols-4 sm:grid-cols-3 grid w-full">
+        <div className="relative xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-2 grid w-full md:pt-0 pt-8">
           {GameNames.map((GameTitle: string, index: number) => (
             <Game
               Title={GameTitle}
