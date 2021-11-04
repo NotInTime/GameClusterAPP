@@ -18,7 +18,7 @@ const AddGameModal: FunctionComponent<IAddGameModal> = (props) => {
       <Transition.Root show={props.showModal} as={Fragment}>
         <Dialog
           as="div"
-          className="fixed z-10 inset-0 overflow-y-auto"
+          className="fixed z-20 inset-0 overflow-y-auto"
           initialFocus={cancelButtonRef}
           open={props.showModal}
           onClose={() => props.closeModalHandler()}
@@ -64,7 +64,6 @@ const AddGameModal: FunctionComponent<IAddGameModal> = (props) => {
                       </Dialog.Title>
                       <div className="mt-2 grid grid-cols-2 gap-5">
                         <InputField InputTitle="Name" InputFieldID="name" />
-                        <InputField InputTitle="Genre" InputFieldID="genre" />
                       </div>
                     </div>
                   </div>
