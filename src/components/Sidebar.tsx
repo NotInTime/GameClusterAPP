@@ -58,10 +58,12 @@ const Sidebar: React.FC = () => {
 
         <div className="flex items-center px-4 pt-4">
           <button className="flex flex-row" onClick={() => setOpenModal(true)}>
-            <AddGameModal
-              showModal={openModal}
-              closeModalHandler={() => setOpenModal(false)}
-            />
+            <div className="top-1/2 absolute">
+              <AddGameModal
+                showModal={openModal}
+                closeModalHandler={() => setOpenModal(false)}
+              />
+            </div>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-6 w-6 border-gray-300 rounded bg-white"

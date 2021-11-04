@@ -7,9 +7,10 @@ interface IAddGameModal {
   showModal: boolean;
   closeModalHandler: Function;
 }
-const handleAddGame = (event: any) => {
-  console.log(event);
+const handleAddGame = () => {
+  console.log("ADD GAME!");
 };
+
 const AddGameModal: FunctionComponent<IAddGameModal> = (props) => {
   const cancelButtonRef = useRef(null);
 
@@ -36,7 +37,6 @@ const AddGameModal: FunctionComponent<IAddGameModal> = (props) => {
               <Dialog.Overlay className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
             </Transition.Child>
 
-            {/* This element is to trick the browser into centering the modal contents. */}
             <span
               className="hidden sm:inline-block sm:align-middle sm:h-screen"
               aria-hidden="true"
@@ -64,6 +64,7 @@ const AddGameModal: FunctionComponent<IAddGameModal> = (props) => {
                       </Dialog.Title>
                       <div className="mt-2 grid grid-cols-2 gap-5">
                         <InputField InputTitle="Name" InputFieldID="name" />
+                        <InputField InputTitle="Genre" InputFieldID="genre" />
                       </div>
                     </div>
                   </div>
@@ -80,7 +81,7 @@ const AddGameModal: FunctionComponent<IAddGameModal> = (props) => {
                   <button
                     type="button"
                     className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:ml-3 sm:w-auto sm:text-sm"
-                    onClick={(e) => handleAddGame(e)}
+                    onClick={() => handleAddGame()}
                   >
                     Add Game
                   </button>

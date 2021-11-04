@@ -1,6 +1,7 @@
 import React from "react";
 
 interface IGame {
+  id: number;
   Title: string;
   ImageURL?: string;
   Genre: string;
@@ -9,12 +10,12 @@ interface IGame {
 const Game: React.FC<IGame> = (props) => {
   return (
     <>
-      <div className="flex flex-col justify-center relative">
+      <div className="flex flex-col relative">
         <div className="relative m-3 flex flex-wrap mx-auto justify-center">
           <div className="relative max-w-sm min-w-[340px] bg-white dark:bg-gray-700 shadow-md rounded-3xl p-2 mx-1 my-3 cursor-pointer">
             <div className="overflow-x-hidden rounded-2xl relative">
               <img
-                className="h-80 rounded-1xl w-full object-cover"
+                className="h-60 rounded-1xl w-full object-cover"
                 src={props.ImageURL}
                 alt="gameIMG"
               />

@@ -1,4 +1,5 @@
 import { FunctionComponent } from "react";
+import { useGameContext } from "../contexts/games";
 
 export interface IInputFieldProps {
   InputTitle: string;
@@ -7,8 +8,7 @@ export interface IInputFieldProps {
 
 const InputField: FunctionComponent<IInputFieldProps> = (props) => {
   const handleOnChange = (e: any, id: string) => {
-    console.log(e);
-    console.log(id);
+    console.log(id, e);
   };
   return (
     <div>
