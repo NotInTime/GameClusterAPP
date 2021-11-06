@@ -145,7 +145,7 @@ const GameDetails: React.FC <IGameDetails> = () => {
               <div className="bg-white shadow sm:rounded-lg">
                 <div className="px-4 py-5 sm:px-6">
                   <h2 id="applicant-information-title" className="text-lg leading-6 font-medium text-gray-900">
-                    Applicant Information
+                    Game Details
                   </h2>
                   <p className="mt-1 max-w-2xl text-sm text-gray-500">Personal details and application.</p>
                 </div>
