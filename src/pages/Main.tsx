@@ -1,42 +1,32 @@
+import { useEffect } from "react";
 import "../App.css";
-import AddGameModal from "../components/AddGameModal";
 import Game from "../components/Game";
 import Sidebar from "../components/Sidebar";
-
-const GameNames = [
-  "Fortnite",
-  "Counter Strike: Global Offensive",
-  "League of Legends",
-  "Darksouls 1",
-  "Darksouls 3",
-  "Factorio",
-  "Phasmophobia",
-  "Battlefield",
-  "Call of Duty Modern Warfare",
-  "Fall Guys",
-  "UNO",
-  "Call of Duty Modern Warfare",
-];
+import { useGameContext } from "../contexts/games";
 
 function Main() {
+  const [games, SetGames] = useGameContext();
+
   return (
-    <div className="h-screen w-full bg-gray-200 dark:bg-gray-900">
-      <div className="relative flex flex-row">
-        <div className="">
-          <Sidebar />
-        </div>
+    <>
+      <div className="bg-gray-200 dark:bg-gray-900 flex-1">
         {/*Game List*/}
-        <div className="relative lg:grid-cols-4 sm:grid-cols-3 grid w-full">
-          {GameNames.map((GameTitle: string, index: number) => (
-            <Game
-              Title={GameTitle}
-              Genre="Battle Royale"
-              ImageURL="https://www.callofduty.com/content/dam/atvi/callofduty/cod-touchui/hub/meta-imgs/vg-meta-image.jpg"
-            />
-          ))}
+        <div className="relative grid-cols-4 grid-rows-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-2 grid md:pt-0 pt-8 justify-center ">
+          {games.games.map((currentGame) => {
+            return (
+              <div onClick={() => console.log(currentGame)}>
+                <Game
+                  id={currentGame.id}
+                  Title={currentGame.title}
+                  Genre={currentGame.genre}
+                  ImageURL={currentGame.imageURL}
+                />
+              </div>
+            );
+          })}
         </div>
       </div>
-    </div>
+    </>
   );
 }
 
