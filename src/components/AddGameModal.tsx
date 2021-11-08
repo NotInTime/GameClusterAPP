@@ -1,19 +1,57 @@
-import { FunctionComponent } from "react";
+import { FunctionComponent, useState } from "react";
 import { Fragment, useRef } from "react";
 import { Dialog, Transition } from "@headlessui/react";
-import InputField from "./InputField";
+import { useGameContext } from "../contexts/games";
+import Toast from "./Toast";
 
 interface IAddGameModal {
   showModal: boolean;
   closeModalHandler: Function;
 }
-const handleAddGame = () => {
-  console.log("ADD GAME!");
+const useForceUpdate = () => {
+  const set = useState(0)[1];
+  return () => set((s) => s + 1);
 };
 
 const AddGameModal: FunctionComponent<IAddGameModal> = (props) => {
+  const [gameList, SetGameList] = useGameContext();
+  const forceUpdate = useForceUpdate();
   const cancelButtonRef = useRef(null);
 
+  let newName: string;
+  let newGenre: string;
+  let newImg: string;
+
+  const handleGameName = (e: any) => {
+    newName = e.target.value;
+  };
+
+  const handleGameGenre = (e: any) => {
+    newGenre = e.target.value;
+  };
+
+  const handleGameIMG = (e: any) => {
+    newImg = e.target.value;
+  };
+
+  const handleAddGame = () => {
+    if (newName && newGenre && newImg) {
+      const newGameList = {
+        ...gameList,
+        games: [
+          ...gameList.games,
+          {
+            id: 1,
+            title: newName,
+            genre: newGenre,
+            imageURL: newImg,
+          },
+        ],
+      };
+      SetGameList(newGameList);
+      props.closeModalHandler();
+    }
+  };
   return (
     <>
       <Transition.Root show={props.showModal} as={Fragment}>
@@ -63,8 +101,57 @@ const AddGameModal: FunctionComponent<IAddGameModal> = (props) => {
                         ADD NEW GAME
                       </Dialog.Title>
                       <div className="mt-2 grid grid-cols-2 gap-5">
-                        <InputField InputTitle="Name" InputFieldID="name" />
-                        <InputField InputTitle="Genre" InputFieldID="genre" />
+                        <div>
+                          <label
+                            htmlFor="Title"
+                            className="block text-sm font-medium text-gray-700"
+                          >
+                            Name
+                          </label>
+                          <div className="mt-1 relative rounded-md shadow-sm">
+                            <input
+                              id="name"
+                              type="text"
+                              name="Title"
+                              className="focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
+                              onChange={(e) => handleGameName(e)}
+                            />
+                          </div>
+                        </div>
+                        <div>
+                          <label
+                            htmlFor="Title"
+                            className="block text-sm font-medium text-gray-700"
+                          >
+                            Genre
+                          </label>
+                          <div className="mt-1 relative rounded-md shadow-sm">
+                            <input
+                              id="genre"
+                              type="text"
+                              name="Title"
+                              className="focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
+                              onChange={(e) => handleGameGenre(e)}
+                            />
+                          </div>
+                        </div>
+                        <div>
+                          <label
+                            htmlFor="gameIMG"
+                            className="block text-sm font-medium text-gray-700"
+                          >
+                            Image (URL)
+                          </label>
+                          <div className="mt-1 relative rounded-md shadow-sm">
+                            <input
+                              id="gameIMG"
+                              type="text"
+                              name="GameIMG"
+                              className="focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
+                              onChange={(e) => handleGameIMG(e)}
+                            />
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
