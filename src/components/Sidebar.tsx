@@ -24,7 +24,7 @@ const Sidebar: React.FC = () => {
 
   return (
     <>
-      <div className="md:w-96">
+      <div className="md:w-64">
         <div className="md:fixed top-0 " style={{ width: "inherit" }}>
           <div
             className={clsx(
