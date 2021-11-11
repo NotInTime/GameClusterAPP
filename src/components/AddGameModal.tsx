@@ -37,13 +37,15 @@ const AddGameModal: FunctionComponent<IAddGameModal> = (props) => {
         games: [
           ...gameList.games,
           {
-            id: 1,
+            id: gameList.games.length + 1,
             title: newName,
             genre: newGenre,
             imageURL: newImg,
           },
         ],
       };
+      console.log(newGameList);
+
       SetGameList(newGameList);
       ToastSuccess("Succesfully added a game!");
       props.closeModalHandler();
