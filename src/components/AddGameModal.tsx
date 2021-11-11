@@ -1,21 +1,17 @@
-import { FunctionComponent, useState } from "react";
+import { FunctionComponent } from "react";
 import { Fragment, useRef } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { useGameContext } from "../contexts/games";
-import Toast from "./Toast";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastWarning, ToastSuccess } from "../emitter/Toast";
 
 interface IAddGameModal {
   showModal: boolean;
   closeModalHandler: Function;
 }
-const useForceUpdate = () => {
-  const set = useState(0)[1];
-  return () => set((s) => s + 1);
-};
 
 const AddGameModal: FunctionComponent<IAddGameModal> = (props) => {
   const [gameList, SetGameList] = useGameContext();
-  const forceUpdate = useForceUpdate();
   const cancelButtonRef = useRef(null);
 
   let newName: string;
@@ -49,7 +45,10 @@ const AddGameModal: FunctionComponent<IAddGameModal> = (props) => {
         ],
       };
       SetGameList(newGameList);
+      ToastSuccess("Succesfully added a game!");
       props.closeModalHandler();
+    } else {
+      ToastWarning("Please fill out all required Fields");
     }
   };
   return (

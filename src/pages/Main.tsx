@@ -2,7 +2,6 @@ import { useState } from "react";
 import "../App.css";
 import Game from "../components/Game";
 import GameDetails from "../components/GameDetails";
-import Toast from "../components/Toast";
 import { useGameContext } from "../contexts/games";
 
 function Main() {
@@ -37,11 +36,6 @@ function Main() {
           </div>
         )}
       </div>
-      <Toast
-        ToastText="Erfolgreich hinzugefügt"
-        ToastType="success"
-        showToast={true}
-      />
     </>
   );
 }
