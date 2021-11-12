@@ -44,8 +44,6 @@ const AddGameModal: FunctionComponent<IAddGameModal> = (props) => {
           },
         ],
       };
-      console.log(newGameList);
-
       SetGameList(newGameList);
       ToastSuccess("Succesfully added a game!");
       props.closeModalHandler();
