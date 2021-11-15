@@ -32,7 +32,7 @@ const Sidebar: React.FC<ISidebar> = (props) => {
         <div className="md:fixed top-0 " style={{ width: "inherit" }}>
           <div
             className={clsx(
-              "flex flex-col w-full h-screen overflow-hidden px-4 py-8 bg-white border-r dark:bg-gray-700 dark:border-gray-600 absolute md:relative z-20",
+              "flex flex-col w-full h-screen overflow-hidden px-4 py-8 bg-white border-r dark:bg-gray-700 dark:border-gray-600 fixed sm:fixed md:relative z-20",
               showMenu && "invisible md:visible"
             )}
           >

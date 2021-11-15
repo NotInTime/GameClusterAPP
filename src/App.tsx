@@ -1,10 +1,9 @@
 import Fuse from "fuse.js";
-import React, { useState } from "react";
+import { useState } from "react";
 import { ToastContainer } from "react-toastify";
 import "./App.css";
 import Sidebar from "./components/Sidebar";
 import { IGame, useGameContext } from "./contexts/games";
-import { ToastError } from "./emitter/Toast";
 import Main from "./pages/Main";
 
 <ToastContainer
@@ -20,7 +19,7 @@ import Main from "./pages/Main";
 />;
 
 function App() {
-  const [gameList, SetGameList] = useGameContext();
+  const [gameList] = useGameContext();
   const [searchResult, SetSearchResult] = useState<IGame[]>([]);
   const [isSearching, SetIsSearching] = useState(false);
 
@@ -34,7 +33,6 @@ function App() {
   const handleGameSearch = (search: string) => {
     search.length > 1 ? SetIsSearching(true) : SetIsSearching(false);
     SetSearchResult(fuse.search(search).map((result) => result.item));
-    //isSearching && searchResult.length === 0 && ToastError("Cant find Game");
   };
 
   return (
