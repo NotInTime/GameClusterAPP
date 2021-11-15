@@ -34,6 +34,13 @@ export const DefaultValues: IGamesContext = {
       imageURL:
         "https://s3.gaming-cdn.com/images/products/857/orig/spiel-steam-dark-souls-3-cover.jpg",
     },
+    {
+      id: 4,
+      title: "Super Mario 64",
+      genre: "Jump & Run",
+      imageURL:
+        "https://upload.wikimedia.org/wikipedia/en/6/6a/Super_Mario_64_box_cover.jpg",
+    },
   ],
 };
 

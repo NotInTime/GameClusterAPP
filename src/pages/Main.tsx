@@ -10,14 +10,18 @@ interface IMainProps {
 
 const Main: React.FC<IMainProps> = (props) => {
   const [showDetails, SetShowDetails] = useState(false);
+  const [clickedGame, SetClickedGame] = useState<IGame | null>(null);
 
   return (
     <>
       <div className="bg-gray-200 dark:bg-gray-900 flex-1">
-        {showDetails ? (
-          <div onClick={() => SetShowDetails(false)}>
-            <GameDetails />
-          </div>
+        {showDetails && clickedGame ? (
+          <GameDetails
+            game={clickedGame}
+            onClose={() => {
+              SetShowDetails(false);
+            }}
+          />
         ) : (
           <div className="pt-8 md:pt-0">
             {props.displayedList.length === 0 && (
@@ -27,7 +31,13 @@ const Main: React.FC<IMainProps> = (props) => {
             )}
             <div className="relative grid-rows-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-2 grid justify-center mx-2">
               {props.displayedList.map((currentGame, index) => (
-                <div key={index} onClick={() => SetShowDetails(true)}>
+                <div
+                  key={index}
+                  onClick={() => {
+                    SetShowDetails(true);
+                    SetClickedGame(currentGame);
+                  }}
+                >
                   <Game
                     id={currentGame.id}
                     Title={currentGame.title}
