@@ -4,6 +4,10 @@ import { MinusSmIcon, PlusSmIcon } from "@heroicons/react/solid";
 import AddGameModal from "./AddGameModal";
 import clsx from "clsx";
 
+interface ISidebar {
+  handleGameSearch: Function;
+}
+
 const filters = [
   {
     id: "genre",
@@ -18,17 +22,17 @@ const filters = [
   },
 ];
 
-const Sidebar: React.FC = () => {
+const Sidebar: React.FC<ISidebar> = (props) => {
   const [openModal, setOpenModal] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
 
   return (
     <>
-      <div className="md:w-96">
+      <div className="md:w-64">
         <div className="md:fixed top-0 " style={{ width: "inherit" }}>
           <div
             className={clsx(
-              "flex flex-col w-full h-screen overflow-hidden px-4 py-8 bg-white border-r dark:bg-gray-700 dark:border-gray-600 absolute md:relative z-20",
+              "flex flex-col w-full h-screen overflow-hidden px-4 py-8 bg-white border-r dark:bg-gray-700 dark:border-gray-600 fixed sm:fixed md:relative z-20",
               showMenu && "invisible md:visible"
             )}
           >
@@ -55,6 +59,9 @@ const Sidebar: React.FC = () => {
                 type="text"
                 className="w-full py-3 pl-10 pr-4 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"
                 placeholder="Search"
+                onChange={(e) => {
+                  props.handleGameSearch(e.target.value);
+                }}
               />
             </div>
 
