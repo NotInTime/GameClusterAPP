@@ -1,13 +1,6 @@
-import { PaperClipIcon } from "@heroicons/react/solid";
-
-const attachments = [
-  { name: "resume_front_end_developer.pdf", href: "#" },
-  { name: "coverletter_front_end_developer.pdf", href: "#" },
-];
-
 export interface IGameDetails {}
 
-const GameDetails: React.FC<IGameDetails> = () => {
+const GameDetails: React.FC = () => {
   return (
     <div className="mt-8 max-w-3xl mx-auto grid grid-cols-1 gap-6 sm:px-6 lg:max-w-full lg:grid-flow-col-dense lg:grid-cols-3 h-screen">
       <div className="space-y-6 lg:col-start-1 lg:col-span-2">
@@ -19,94 +12,81 @@ const GameDetails: React.FC<IGameDetails> = () => {
                 id="applicant-information-title"
                 className="text-lg leading-6 font-medium text-gray-900"
               >
-                Applicant Information
+                Game Details
               </h2>
-              <p className="mt-1 max-w-2xl text-sm text-gray-500">
-                Personal details and application.
-              </p>
             </div>
+
             <div className="border-t border-gray-200 px-4 py-5 sm:px-6">
               <dl className="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-2">
                 <div className="sm:col-span-1">
+                  <dt className="text-sm font-medium text-gray-500">Name: </dt>
+                  <dd className="mt-1 text-sm text-gray-900">
+                    {" "}
+                    Counter Strike{" "}
+                  </dd>
+
                   <dt className="text-sm font-medium text-gray-500">
-                    Application for
+                    {" "}
+                    Release date:{" "}
                   </dt>
                   <dd className="mt-1 text-sm text-gray-900">
-                    Backend Developer
+                    {" "}
+                    21. Aug. 2012{" "}
                   </dd>
+
+                  <dt className="text-sm font-medium text-gray-500">
+                    {" "}
+                    Game Tags{" "}
+                  </dt>
+                  <dd className="mt-1 text-sm text-gray-900">
+                    {" "}
+                    hier die brackets testen{" "}
+                  </dd>
+
+                  <dt className="text-sm font-medium text-gray-500">
+                    {" "}
+                    Publisher{" "}
+                  </dt>
+                  <dd className="mt-1 text-sm text-gray-900"> Valve </dd>
+
+                  <dt className="text-sm font-medium text-gray-500">
+                    {" "}
+                    Altersfreigabe{" "}
+                  </dt>
+                  <dd className="mt-1 text-sm text-gray-900"> FSK 16 </dd>
+
+                  <dt className="text-sm font-medium text-gray-500">
+                    {" "}
+                    Bewertung{" "}
+                  </dt>
+                  <dd className="mt-1 text-sm text-gray-900"> Schmutz </dd>
                 </div>
                 <div className="sm:col-span-1">
                   <dt className="text-sm font-medium text-gray-500">
-                    Email address
+                    {" "}
+                    Beschreibung{" "}
                   </dt>
                   <dd className="mt-1 text-sm text-gray-900">
-                    ricardocooper@example.com
+                    Counter-Strike: Global Offensive (CS:GO) erweitert sein
+                    teambasiertes actionreiches Gameplay, mit dem es bei seiner
+                    Veröffentlichung vor 19 Jahren Spielgeschichte schrieb.
+                    CS:GO bietet neue Karten, Charaktere, Waffen, sowie
+                    Spielmodi und verbesserte Versionen des klassischen
+                    CS-Inhalts{" "}
                   </dd>
                 </div>
                 <div className="sm:col-span-1">
-                  <dt className="text-sm font-medium text-gray-500">
-                    Salary expectation
-                  </dt>
-                  <dd className="mt-1 text-sm text-gray-900">$120,000</dd>
+                  <dt className="text-sm font-medium text-gray-500"></dt>
+                  <dd className="mt-1 text-sm text-gray-900"></dd>
                 </div>
                 <div className="sm:col-span-1">
-                  <dt className="text-sm font-medium text-gray-500">Phone</dt>
-                  <dd className="mt-1 text-sm text-gray-900">
-                    +1 555-555-5555
-                  </dd>
-                </div>
-                <div className="sm:col-span-2">
-                  <dt className="text-sm font-medium text-gray-500">About</dt>
-                  <dd className="mt-1 text-sm text-gray-900">
-                    Fugiat ipsum ipsum deserunt culpa aute sint do nostrud anim
-                    incididunt cillum culpa consequat. Excepteur qui ipsum
-                    aliquip consequat sint. Sit id mollit nulla mollit nostrud
-                    in ea officia proident. Irure nostrud pariatur mollit ad
-                    adipisicing reprehenderit deserunt qui eu.
-                  </dd>
-                </div>
-                <div className="sm:col-span-2">
                   <dt className="text-sm font-medium text-gray-500">
-                    Attachments
+                    Anderen Sachen
                   </dt>
-                  <dd className="mt-1 text-sm text-gray-900">
-                    <ul className="border border-gray-200 rounded-md divide-y divide-gray-200">
-                      {attachments.map((attachment) => (
-                        <li
-                          key={attachment.name}
-                          className="pl-3 pr-4 py-3 flex items-center justify-between text-sm"
-                        >
-                          <div className="w-0 flex-1 flex items-center">
-                            <PaperClipIcon
-                              className="flex-shrink-0 h-5 w-5 text-gray-400"
-                              aria-hidden="true"
-                            />
-                            <span className="ml-2 flex-1 w-0 truncate">
-                              {attachment.name}
-                            </span>
-                          </div>
-                          <div className="ml-4 flex-shrink-0">
-                            <a
-                              href={attachment.href}
-                              className="font-medium text-blue-600 hover:text-blue-500"
-                            >
-                              Download
-                            </a>
-                          </div>
-                        </li>
-                      ))}
-                    </ul>
-                  </dd>
+                  <dd className="mt-1 text-sm text-gray-900">Bla blaaa BLA</dd>
                 </div>
+                <div className="sm:col-span-2"></div>
               </dl>
-            </div>
-            <div>
-              <a
-                href="#"
-                className="block bg-gray-50 text-sm font-medium text-gray-500 text-center px-4 py-4 hover:text-gray-700 sm:rounded-b-lg"
-              >
-                Read full application
-              </a>
             </div>
           </div>
         </section>
