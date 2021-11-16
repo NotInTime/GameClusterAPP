@@ -14,7 +14,7 @@ const Main: React.FC<IMainProps> = (props) => {
 
   return (
     <>
-      <div className="bg-gray-200 dark:bg-gray-900 flex-1">
+      <div className="bg-gray-900 flex-1">
         {showDetails && clickedGame ? (
           <GameDetails
             game={clickedGame}
