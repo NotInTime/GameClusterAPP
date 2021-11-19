@@ -21,7 +21,7 @@ const GameDetails: React.FC<IGameDetails> = (props) => {
   const { game, onClose } = props;
   return (
     <>
-      <div className="absolute -z-10">
+      <div className="absolute -z-10 filter brightness-50">
         <img
           src={game.imageURL}
           className="w-full h-screen object-cover z-0 opacity-100"
@@ -75,7 +75,7 @@ const GameDetails: React.FC<IGameDetails> = (props) => {
                 </div>
 
                 <div className="border-t border-gray-200 px-4 py-5 sm:px-6">
-                  <dl className="grid grid-cols-1 gap-x-4 gap-y-8 md:grid-cols-2 grid-rows-1 md:grid-rows-2">
+                  <dl className="grid grid-cols-1 gap-x-4 gap-y-8 lg:grid-cols-2 grid-rows-1 lg:grid-rows-2">
                     <div className="sm:col-span-1">
                       <img
                         src={game.imageURL}
@@ -84,10 +84,10 @@ const GameDetails: React.FC<IGameDetails> = (props) => {
                       />
                     </div>
                     <div className="sm:col-span-1">
-                      <dt className="text-sm font-medium text-white">
+                      <dt className="text-xl font-medium text-gray-100">
                         Beschreibung
                       </dt>
-                      <dd className="mt-1 text-sm text-gray-200">
+                      <dd className="mt-1 text-lg text-gray-300">
                         Counter-Strike: Global Offensive (CS:GO) erweitert sein
                         teambasiertes actionreiches Gameplay, mit dem es bei
                         seiner Veröffentlichung vor 19 Jahren Spielgeschichte
@@ -106,10 +106,10 @@ const GameDetails: React.FC<IGameDetails> = (props) => {
                       <Item title="Game Rating" value="0 / 5" />
                     </div>
                     <div className="sm:col-span-1">
-                      <dt className="text-sm font-medium text-gray-300">
+                      <dt className="text-xl font-medium text-gray-100">
                         Anderen Sachen
                       </dt>
-                      <dd className="mt-1 text-sm text-gray-100">
+                      <dd className="mt-1 text-lg text-gray-300">
                         Bla blaaa BLA
                       </dd>
                     </div>

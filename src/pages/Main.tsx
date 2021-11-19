@@ -9,8 +9,8 @@ interface IMainProps {
 }
 
 const Main: React.FC<IMainProps> = (props) => {
-  const [showDetails, SetShowDetails] = useState(false);
-  const [clickedGame, SetClickedGame] = useState<IGame | null>(null);
+  const [showDetails, setShowDetails] = useState(false);
+  const [clickedGame, setClickedGame] = useState<IGame | null>(null);
 
   return (
     <>
@@ -19,7 +19,7 @@ const Main: React.FC<IMainProps> = (props) => {
           <GameDetails
             game={clickedGame}
             onClose={() => {
-              SetShowDetails(false);
+              setShowDetails(false);
             }}
           />
         ) : (
@@ -34,8 +34,8 @@ const Main: React.FC<IMainProps> = (props) => {
                 <div
                   key={index}
                   onClick={() => {
-                    SetShowDetails(true);
-                    SetClickedGame(currentGame);
+                    setShowDetails(true);
+                    setClickedGame(currentGame);
                   }}
                 >
                   <Game

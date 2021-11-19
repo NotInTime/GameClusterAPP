@@ -20,8 +20,8 @@ import Main from "./pages/Main";
 
 function App() {
   const [gameList] = useGameContext();
-  const [searchResult, SetSearchResult] = useState<IGame[]>([]);
-  const [isSearching, SetIsSearching] = useState(false);
+  const [searchResult, setSearchResult] = useState<IGame[]>([]);
+  const [isSearching, setIsSearching] = useState(false);
 
   const options = {
     includeScore: true,
@@ -31,8 +31,8 @@ function App() {
   const fuse = new Fuse(gameList.games, options);
 
   const handleGameSearch = (search: string) => {
-    search.length > 1 ? SetIsSearching(true) : SetIsSearching(false);
-    SetSearchResult(fuse.search(search).map((result) => result.item));
+    search.length > 1 ? setIsSearching(true) : setIsSearching(false);
+    setSearchResult(fuse.search(search).map((result) => result.item));
   };
 
   return (
