@@ -168,7 +168,7 @@ const Sidebar: React.FC<ISidebar> = (props) => {
           <input
             type="text"
             className={clsx(
-              "fixed h-8 z-10 right-0 mr-12 mt-2 border rounded-md bg-gray-100 md:bg-gray-600 text-gray-600 md:text-gray-100 border-gray-600 focus:border-blue-500 focus:outline-none focus:ring",
+              "fixed h-8 z-10 right-0 mr-12 mt-2 border rounded-md bg-gray-100 md:bg-gray-600 text-gray-600 md:text-gray-100 border-gray-600 ",
               showMenu && "visible md:visible"
             )}
             placeholder="Search"

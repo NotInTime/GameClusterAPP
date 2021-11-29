@@ -28,7 +28,7 @@ const GameDetails: React.FC<IGameDetails> = (props) => {
           alt="gameDetailsIMG"
         />
       </div>
-      <div className="flex flex-row bg-gradient-to-t via-gray-900 from-gray-900 z-10 relative h-full my-14 md:my-24 lg:my-14 justify-center">
+      <div className="flex flex-row bg-gradient-to-t via-gray-900 from-gray-900 z-10 relative h-full my-14 md:my-24 lg:mt-28 justify-center">
         <div className="z-20 relative w-5/6 lg:w-4/6 flex items-center pb-10 h-full md:h-screen">
           <div className="space-y-6 lg:col-start-1 lg:col-span-2">
             <section aria-labelledby="applicant-information-title">
@@ -36,7 +36,7 @@ const GameDetails: React.FC<IGameDetails> = (props) => {
                 <div className="px-4 pb-5 pt-0 md:pt-16 md:px-6 flex flex-row justify-between">
                   <h2
                     id="applicant-information-title"
-                    className="text-2xl sm:text-5xl leading-6 font-bold text-white"
+                    className="text-2xl lg:text-5xl leading-6 font-bold text-white"
                   >
                     {game.title}
                   </h2>
