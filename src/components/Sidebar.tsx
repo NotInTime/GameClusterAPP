@@ -28,7 +28,7 @@ const Sidebar: React.FC<ISidebar> = (props) => {
 
   return (
     <>
-      <div className="md:w-64">
+      <div className="md:w-64 z-50">
         <div className="md:fixed top-0 " style={{ width: "inherit" }}>
           <div
             className={clsx(
@@ -162,9 +162,20 @@ const Sidebar: React.FC<ISidebar> = (props) => {
             </form>
           </div>
 
-          <div className="z-10 md:invisible w-full h-12 fixed mb-10 bg-white text-xl font-semibold py-2 px-2">
+          <div className="z-10 visible md:invisible w-full h-12 fixed mb-10 bg-white text-xl font-semibold py-2 px-2">
             Game Cluster
           </div>
+          <input
+            type="text"
+            className={clsx(
+              "fixed h-8 z-10 right-0 mr-12 mt-2 border rounded-md bg-gray-100 md:bg-gray-600 text-gray-600 md:text-gray-100 border-gray-600 focus:border-blue-500 focus:outline-none focus:ring",
+              showMenu && "visible md:visible"
+            )}
+            placeholder="Search"
+            onChange={(e) => {
+              props.handleGameSearch(e.target.value);
+            }}
+          />
           <span
             className="z-20 fixed cursor-pointer md:invisible top-0 right-0 p-2 flex flex-row"
             onClick={() => setShowMenu(!showMenu)}

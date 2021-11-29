@@ -28,31 +28,15 @@ const GameDetails: React.FC<IGameDetails> = (props) => {
           alt="gameDetailsIMG"
         />
       </div>
-      <div className="flex flex-row bg-gradient-to-t via-gray-900 from-gray-900 z-10 relative">
-        <button className="relative h-screen w-1/6">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="w-full"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="white"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M15 19l-7-7 7-7"
-            />
-          </svg>
-        </button>
-        <div className="z-20 relative w-4/6 flex items-center pb-10">
+      <div className="flex flex-row bg-gradient-to-t via-gray-900 from-gray-900 z-10 relative h-full my-14 md:my-24 lg:my-14 justify-center">
+        <div className="z-20 relative w-5/6 lg:w-4/6 flex items-center pb-10 h-full md:h-screen">
           <div className="space-y-6 lg:col-start-1 lg:col-span-2">
             <section aria-labelledby="applicant-information-title">
               <div className="m:rounded-lg bg-opacity-95">
-                <div className="px-4 py-5 sm:px-6 flex flex-row justify-between">
+                <div className="px-4 pb-5 pt-0 md:pt-16 md:px-6 flex flex-row justify-between">
                   <h2
                     id="applicant-information-title"
-                    className="text-5xl leading-6 font-bold text-white"
+                    className="text-2xl sm:text-5xl leading-6 font-bold text-white"
                   >
                     {game.title}
                   </h2>
@@ -96,7 +80,7 @@ const GameDetails: React.FC<IGameDetails> = (props) => {
                         klassischen CS-Inhalts
                       </dd>
                     </div>
-                    <div className="sm:col-span-1">
+                    <div className="sm:col-span-1 flex-col">
                       <Item title="Game ID" value={game.id} />
                       <Item title="Name" value={game.title} />
                       <Item title="Genre" value={game.genre} />
@@ -119,22 +103,6 @@ const GameDetails: React.FC<IGameDetails> = (props) => {
             </section>
           </div>
         </div>
-        <button className="relative h-screen w-1/6">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="w-full"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="white"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M9 5l7 7-7 7"
-            />
-          </svg>
-        </button>
       </div>
     </>
   );

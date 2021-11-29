@@ -3,6 +3,7 @@ import "../App.css";
 import Game from "../components/Game";
 import GameDetails from "../components/GameDetails";
 import { IGame } from "../contexts/games";
+import TestSteamApi from "../api/steamTestAPI";
 
 interface IMainProps {
   displayedList: IGame[];
@@ -14,7 +15,7 @@ const Main: React.FC<IMainProps> = (props) => {
 
   return (
     <>
-      <div className="bg-gray-900 flex-1">
+      <div className="bg-gray-900 flex-1 relative">
         {showDetails && clickedGame ? (
           <GameDetails
             game={clickedGame}
