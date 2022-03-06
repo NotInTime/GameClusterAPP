@@ -1,6 +1,7 @@
 import Fuse from "fuse.js";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ToastContainer } from "react-toastify";
+import { getAllGames } from "./api/games";
 import "./App.css";
 import Sidebar from "./components/Sidebar";
 import { IGame, useGameContext } from "./contexts/games";
@@ -19,9 +20,14 @@ import Main from "./pages/Main";
 />;
 
 function App() {
-  const [gameList] = useGameContext();
+  const [gameList, setGameList] = useState<IGame[]>([]);
   const [searchResult, setSearchResult] = useState<IGame[]>([]);
   const [isSearching, setIsSearching] = useState(false);
+
+  useEffect{() => {
+    const currentGames = getAllGames()
+    setGameList(currentGames)
+  }}
 
   const options = {
     includeScore: true,

@@ -1,10 +1,21 @@
 import createStateContext from "react-use/lib/factory/createStateContext";
 
 export interface IGame {
-  id: number;
-  title: string;
+  game_id: number;
+  name: string;
   genre: string;
   imageURL?: string;
+  description?: string;
+  header_image_path?: string;
+  is_deleted?: boolean;
+  is_favorite?: boolean;
+  metascore?: number;
+  platform_linux?: boolean;
+  platform_mac?: boolean;
+  platform_windows?: boolean;
+  release_date?: string;
+  required_age?: number;
+  requirement?: string;
 }
 
 export interface IGamesContext {

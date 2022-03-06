@@ -163,7 +163,7 @@ const Sidebar: React.FC<ISidebar> = (props) => {
           </div>
 
           <div className="z-10 visible md:invisible w-full h-12 fixed mb-10 bg-white text-xl font-semibold py-2 px-2">
-            Game Cluster
+            GC
           </div>
           <input
             type="text"

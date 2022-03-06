@@ -28,7 +28,7 @@ const GameDetails: React.FC<IGameDetails> = (props) => {
           alt="gameDetailsIMG"
         />
       </div>
-      <div className="flex flex-row bg-gradient-to-t via-gray-900 from-gray-900 z-10 relative h-full my-14 md:my-24 lg:mt-28 justify-center">
+      <div className="flex flex-row bg-gradient-to-t via-gray-900 from-gray-900 z-10 relative h-screen my-14 md:my-24 lg:mt-28 justify-center">
         <div className="z-20 relative w-5/6 lg:w-4/6 flex items-center pb-10 h-full md:h-screen">
           <div className="space-y-6 lg:col-start-1 lg:col-span-2">
             <section aria-labelledby="applicant-information-title">
@@ -60,7 +60,7 @@ const GameDetails: React.FC<IGameDetails> = (props) => {
 
                 <div className="border-t border-gray-200 px-4 py-5 sm:px-6">
                   <dl className="grid grid-cols-1 gap-x-4 gap-y-8 lg:grid-cols-2 grid-rows-1 lg:grid-rows-2">
-                    <div className="sm:col-span-1">
+                    <div className="sm:col-span-1 max-w-[350px]">
                       <img
                         src={game.imageURL}
                         alt="gameDetailsIMG2"
