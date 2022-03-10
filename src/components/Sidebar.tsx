@@ -1,30 +1,69 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import { Disclosure } from "@headlessui/react";
 import { MinusSmIcon, PlusSmIcon } from "@heroicons/react/solid";
 import AddGameModal from "./AddGameModal";
 import clsx from "clsx";
+import { useGameContext } from "../contexts/games";
 
 interface ISidebar {
   handleGameSearch: Function;
+  handleArchived?: Function;
+
+  setFilterState: (state: FilterState) => void;
+  filterState: FilterState;
 }
 
-const filters = [
-  {
-    id: "genre",
-    name: "Genre",
-    options: [
-      { value: "Multiplayer", label: "Multiplayer", checked: false },
-      { value: "Action", label: "Action", checked: false },
-      { value: "Adventure", label: "Adventure", checked: false },
-      { value: "Singleplayer", label: "Singleplayer", checked: false },
-      { value: "2D", label: "2D", checked: false },
-    ],
-  },
-];
+export interface FilterState {
+  search: string | false;
+  archived: boolean;
+  favourite: boolean;
+}
 
 const Sidebar: React.FC<ISidebar> = (props) => {
+  const { setFilterState, filterState } = props;
   const [openModal, setOpenModal] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
+  const [gameList, setGamesList] = useGameContext();
+
+  const handleFavouriteChange = useCallback<
+    React.ChangeEventHandler<HTMLInputElement>
+  >(
+    (e) => {
+      if (e.target.checked) {
+        setFilterState({
+          favourite: e.target.checked,
+          search: false,
+          archived: false,
+        });
+      } else {
+        setFilterState({
+          ...filterState,
+          favourite: false,
+        });
+      }
+    },
+    [filterState, setFilterState]
+  );
+
+  const handleArhivedChange = useCallback<
+    React.ChangeEventHandler<HTMLInputElement>
+  >(
+    (e) => {
+      if (e.target.checked) {
+        setFilterState({
+          archived: e.target.checked,
+          search: false,
+          favourite: false,
+        });
+      } else {
+        setFilterState({
+          ...filterState,
+          archived: false,
+        });
+      }
+    },
+    [filterState, setFilterState]
+  );
 
   return (
     <>
@@ -51,11 +90,12 @@ const Sidebar: React.FC<ISidebar> = (props) => {
               </span>
               <input
                 type="text"
-                className="w-full py-3 pl-10 pr-4 border rounded-md bg-gray-600 text-gray-100 border-gray-600 focus:border-blue-500 focus:outline-none focus:ring"
+                className="w-full py-3 pl-10 pr-4 border rounded-md bg-gray-600 text-gray-100 border-gray-600 focus:border-elue-500 focus:outline-none focus:ring"
                 placeholder="Search"
                 onChange={(e) => {
                   props.handleGameSearch(e.target.value);
                 }}
+                value={filterState.search ? filterState.search : ""}
               />
             </div>
 
@@ -91,75 +131,30 @@ const Sidebar: React.FC<ISidebar> = (props) => {
             </div>
             <div className="flex items-center px-4 pt-4">
               <input
+                name="Archived"
+                defaultValue="Archived"
+                type="checkbox"
+                className="h-6 w-6 rounded text-gray-600 focus:ring-gray-600"
+                onChange={handleArhivedChange}
+                checked={filterState.archived}
+              />
+              <label className="ml-3 min-w-0 flex-1 text-gray-200 cursor-pointer">
+                Archived
+              </label>
+            </div>
+            <div className="flex items-center px-4 pt-4">
+              <input
                 name="Favorite"
                 defaultValue="Favorites"
                 type="checkbox"
                 className="h-6 w-6 rounded text-gray-600 focus:ring-gray-600"
+                onChange={handleFavouriteChange}
+                checked={filterState.favourite}
               />
               <label className="ml-3 min-w-0 flex-1 text-gray-200">
                 Favorite
               </label>
             </div>
-            {/* Filters */}
-            <form className="mt-4 bg-white rounded-xl">
-              {filters.map((section) => (
-                <Disclosure
-                  as="div"
-                  key={section.id}
-                  className=" border-gray-200 px-4 py-6"
-                >
-                  {({ open }) => (
-                    <>
-                      <h3 className="-mx-2 -my-3 flow-root">
-                        <Disclosure.Button className="px-2 py-3 bg-gray-300 rounded-xl w-full flex items-center justify-between text-gray-400 hover:text-gray-500">
-                          <span className="font-medium text-gray-900">
-                            {section.name}
-                          </span>
-                          <span className="ml-6 flex items-center">
-                            {open ? (
-                              <MinusSmIcon
-                                className="h-5 w-5"
-                                aria-hidden="true"
-                              />
-                            ) : (
-                              <PlusSmIcon
-                                className="h-5 w-5"
-                                aria-hidden="true"
-                              />
-                            )}
-                          </span>
-                        </Disclosure.Button>
-                      </h3>
-                      <Disclosure.Panel className="pt-6">
-                        <div className="space-y-6">
-                          {section.options.map((option, optionIdx) => (
-                            <div
-                              key={option.value}
-                              className="flex items-center"
-                            >
-                              <input
-                                id={`filter-mobile-${section.id}-${optionIdx}`}
-                                name={`${section.id}[]`}
-                                defaultValue={option.value}
-                                type="checkbox"
-                                defaultChecked={option.checked}
-                                className="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500"
-                              />
-                              <label
-                                htmlFor={`filter-mobile-${section.id}-${optionIdx}`}
-                                className="ml-3 min-w-0 flex-1 text-gray-500"
-                              >
-                                {option.label}
-                              </label>
-                            </div>
-                          ))}
-                        </div>
-                      </Disclosure.Panel>
-                    </>
-                  )}
-                </Disclosure>
-              ))}
-            </form>
           </div>
 
           <div className="z-10 visible md:invisible w-full h-12 fixed mb-10 bg-white text-xl font-semibold py-2 px-2">

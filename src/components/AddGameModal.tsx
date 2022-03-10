@@ -1,9 +1,10 @@
 import { FunctionComponent } from "react";
 import { Fragment, useRef } from "react";
 import { Dialog, Transition } from "@headlessui/react";
-import { useGameContext } from "../contexts/games";
+import { IGame, useGameContext } from "../contexts/games";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastWarning, ToastSuccess } from "../emitter/Toast";
+import { addGame } from "../api/games";
 
 interface IAddGameModal {
   showModal: boolean;
@@ -11,7 +12,7 @@ interface IAddGameModal {
 }
 
 const AddGameModal: FunctionComponent<IAddGameModal> = (props) => {
-  const [gameList, SetGameList] = useGameContext();
+  const [gameList, setGamesList] = useGameContext();
   const cancelButtonRef = useRef(null);
 
   let newName: string;
@@ -32,21 +33,27 @@ const AddGameModal: FunctionComponent<IAddGameModal> = (props) => {
 
   const handleAddGame = () => {
     if (newName && newGenre && newImg) {
-      const newGameList = {
-        ...gameList,
-        games: [
-          ...gameList.games,
-          {
-            id: gameList.games.length + 1,
-            title: newName,
-            genre: newGenre,
-            imageURL: newImg,
-          },
-        ],
+      const newGame: IGame = {
+        // id generated from db
+        game_id: 0,
+        name: newName,
+        genre: newGenre,
+        header_image_path: newImg,
       };
-      SetGameList(newGameList);
-      ToastSuccess("Succesfully added a game!");
-      props.closeModalHandler();
+      addGame(newGame).then((id) => {
+        setGamesList((state) => ({
+          ...state,
+          games: [
+            ...state.games,
+            {
+              ...newGame,
+              game_id: id,
+            },
+          ],
+        }));
+        ToastSuccess("Succesfully added a game!");
+        props.closeModalHandler();
+      });
     } else {
       ToastWarning("Please fill out all required Fields");
     }

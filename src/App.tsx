@@ -1,9 +1,9 @@
 import Fuse from "fuse.js";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { ToastContainer } from "react-toastify";
-import { getAllGames } from "./api/games";
+import { apiGameToUiGame, getAllGames } from "./api/games";
 import "./App.css";
-import Sidebar from "./components/Sidebar";
+import Sidebar, { FilterState } from "./components/Sidebar";
 import { IGame, useGameContext } from "./contexts/games";
 import Main from "./pages/Main";
 
@@ -20,32 +20,70 @@ import Main from "./pages/Main";
 />;
 
 function App() {
-  const [gameList, setGameList] = useState<IGame[]>([]);
-  const [searchResult, setSearchResult] = useState<IGame[]>([]);
-  const [isSearching, setIsSearching] = useState(false);
+  const [gameList, setGameList] = useGameContext();
 
-  useEffect{() => {
-    const currentGames = getAllGames()
-    setGameList(currentGames)
-  }}
+  const [filterState, setFilterState] = useState<FilterState>({
+    search: false,
+    archived: false,
+    favourite: false,
+  });
 
-  const options = {
-    includeScore: true,
-    keys: ["title", "genre"],
-  };
+  useEffect(() => {
+    getAllGames().then((r) => {
+      setGameList((state) => ({
+        ...state,
+        games: r.map(apiGameToUiGame),
+      }));
+    });
+  }, [setGameList]);
 
-  const fuse = new Fuse(gameList.games, options);
+  const fuse = useMemo(() => {
+    const options = {
+      includeScore: true,
+      keys: ["name", "genre"],
+    };
+    return new Fuse(gameList.games, options);
+  }, [gameList.games]);
 
   const handleGameSearch = (search: string) => {
-    search.length > 1 ? setIsSearching(true) : setIsSearching(false);
-    setSearchResult(fuse.search(search).map((result) => result.item));
+    if (search.length >= 1) {
+      setFilterState({
+        search: search,
+        archived: false,
+        favourite: false,
+      });
+    } else {
+      setFilterState({
+        search: false,
+        archived: false,
+        favourite: false,
+      });
+    }
   };
+
+  const displayedList = useMemo(() => {
+    if (filterState.search) {
+      return fuse.search(filterState.search).map((result) => result.item);
+    } else if (filterState.archived) {
+      return gameList.games.filter((game) => game.is_deleted);
+    } else if (filterState.favourite) {
+      return gameList.games.filter((game) => game.is_favorite);
+    }
+
+    return gameList.games.filter((game) => !game.is_deleted);
+  }, [filterState, fuse, gameList]);
+
+  console.log(gameList.games);
 
   return (
     <>
       <div className="flex flex-row">
-        <Sidebar handleGameSearch={(e: any) => handleGameSearch(e)} />
-        <Main displayedList={isSearching ? searchResult : gameList.games} />
+        <Sidebar
+          handleGameSearch={(e: any) => handleGameSearch(e)}
+          filterState={filterState}
+          setFilterState={setFilterState}
+        />
+        <Main displayedList={displayedList} />
       </div>
       <ToastContainer />
     </>
