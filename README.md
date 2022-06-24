@@ -1,3 +1,9 @@
+# App UI
+
+![GameCluster UI](/public/UI_GameCluster.png)
+![AddGame UI](/public/UI_AddGame.png)
+![GameCluster UI](/public/UI_GameDetails.png)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
